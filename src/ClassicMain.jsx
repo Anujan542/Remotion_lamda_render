@@ -18,7 +18,6 @@ export const ClassicMain = () => {
 
 	const [remotionDetails, setRemotionDetails] = useState(null);
 	const [classicData, setClassicData] = useState([]);
-	console.log(classicData);
 
 	const fetchData = useCallback(async () => {
 		await fetch(
@@ -27,6 +26,7 @@ export const ClassicMain = () => {
 			.then((response) => response.json())
 			.then((actualData) => {
 				setRemotionDetails(actualData);
+				console.log(actualData);
 			})
 			.catch((err) => {
 				console.log(err.message);
@@ -37,7 +37,8 @@ export const ClassicMain = () => {
 
 	useEffect(() => {
 		fetchData();
-	}, [fetchData]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const getVideoDuration = async (firstAsset) => {
 		try {
@@ -164,12 +165,12 @@ export const ClassicMain = () => {
 	};
 
 	useEffect(() => {
-		async function fetchGetData() {
-			if (remotionDetails) {
-				await getData();
-			}
+		// Async function fetchGetData() {
+		if (remotionDetails) {
+			getData();
 		}
-		fetchGetData();
+		// }
+		// fetchGetData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [remotionDetails]);
 
@@ -180,7 +181,7 @@ export const ClassicMain = () => {
 				fromTime += item.duration;
 				return (
 					<AbsoluteFill key={index}>
-						{!item.type === 'media' ? (
+						{item.type !== 'media' ? (
 							<AbsoluteFill>
 								<Sequence
 									from={fromTime - item.duration}
