@@ -13,6 +13,8 @@
   "dependencies": {
     "@remotion/cli": "3.2.40",
     "@remotion/eslint-config": "3.2.40",
+    "@remotion/lambda": "^3.2.40",
+    "@remotion/media-utils": "^3.2.40",
     "eslint": "^8.14.0",
     "prettier": "^2.6.2",
     "react": "^18.0.0",
