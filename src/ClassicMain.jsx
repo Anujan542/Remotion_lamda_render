@@ -31,8 +31,6 @@ export const ClassicMain = () => {
 			.catch((err) => {
 				console.log(err.message);
 			});
-
-		continueRender(handle);
 	}, [handle]);
 
 	useEffect(() => {
@@ -162,6 +160,7 @@ export const ClassicMain = () => {
 		// }
 
 		setClassicData(data);
+		continueRender(handle);
 	};
 
 	useEffect(() => {
