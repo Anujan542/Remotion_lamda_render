@@ -1,6 +1,7 @@
 import {delayRender, continueRender, Composition} from 'remotion';
 import {useEffect, useState, useCallback} from 'react';
-import {ClassicMain} from './ClassicMain';
+// Import {ClassicMain} from './ClassicMain';
+import {ClassicColorBorderMain} from './ClassicColorBorderMain';
 
 export const RemotionVideo = () => {
 	const [handle] = useState(() => delayRender());
@@ -27,7 +28,7 @@ export const RemotionVideo = () => {
 		<>
 			<Composition
 				id="HelloWorld"
-				component={ClassicMain}
+				component={ClassicColorBorderMain}
 				durationInFrames={totalTime}
 				fps={30}
 				width={1920}
