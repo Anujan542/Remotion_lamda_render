@@ -5,12 +5,17 @@ import {
 	useCurrentFrame,
 	Sequence,
 } from 'remotion';
+import {SlideOpenEffect2} from '../Effects/SlideOpenEffect2';
 
 import {SlideOpenEffect} from '../Effects/SlideOpenEffects';
+import {UnderlineEffect} from '../Effects/UnderlineEffect';
 
 import {DownLogo} from './DownLogo';
+import {SubText} from './SubText';
+import {Text} from './Text';
+import {Underline} from './Underline';
 
-export const IntroMain = ({logo, PrimaryColor}) => {
+export const IntroMain = ({logo, PrimaryColor, SecondaryColor, hashTag}) => {
 	const frame = useCurrentFrame();
 
 	const opacity = interpolate(frame, [0, 100], [0, 4]);
@@ -38,9 +43,9 @@ export const IntroMain = ({logo, PrimaryColor}) => {
 					<SlideOpenEffect color={PrimaryColor} />
 				</Sequence>
 
-				{/* <Sequence from={50} durationInFrames={30}>
+				<Sequence from={50} durationInFrames={30}>
 					<SlideOpenEffect2 color={SecondaryColor} />
-				</Sequence> */}
+				</Sequence>
 
 				{/* Second Set */}
 				<Sequence from={70} durationInFrames={110}>
@@ -52,126 +57,46 @@ export const IntroMain = ({logo, PrimaryColor}) => {
 					/>
 				</Sequence>
 
-				{/* <Sequence from={75} durationInFrames={105}>
-					<Underline
-						alignTop={`${27}`}
-						color={
-							name === 'Classic' ||
-							name === 'Classic (No Lower Third)' ||
-							name === 'No Lower Third' ||
-							name === 'Classic Color Border' ||
-							name === 'Bar' ||
-							name === 'Bars' ||
-							name === 'Bars - No Year' ||
-							name === 'Black Bar' ||
-							name === 'Text Only'
-								? PrimaryColor
-								: 'black'
-						}
-					/>
+				<Sequence from={75} durationInFrames={105}>
+					<Underline alignTop={`${38}`} color={PrimaryColor} />
 				</Sequence>
 
 				<Sequence from={80} durationInFrames={100}>
 					<Text
-						titleColor={
-							name === 'Classic' ||
-							name === 'Classic (No Lower Third)' ||
-							name === 'No Lower Third' ||
-							name === 'Classic Color Border' ||
-							name === 'Bar' ||
-							name === 'Bars' ||
-							name === 'Bars - No Year' ||
-							name === 'Black Bar' ||
-							name === 'Text Only'
-								? PrimaryColor
-								: 'black'
-						}
+						titleColor={PrimaryColor}
 						titleText="CONGRATULATIONS!"
-						bottom={200}
-						size="62px"
+						bottom={270}
+						size="90px"
 						fontWeight={900}
 						time={1}
-						marginLeft={''}
-						fontStyle={''}
-						background={
-							name === 'Classic' ||
-							name === 'Classic (No Lower Third)' ||
-							name === 'No Lower Third' ||
-							name === 'Classic Color Border' ||
-							name === 'Bar' ||
-							name === 'Bars' ||
-							name === 'Bars - No Year' ||
-							name === 'Black Bar' ||
-							name === 'Text Only'
-								? 'white'
-								: PrimaryColor
-						}
+						marginLeft=""
+						fontStyle=""
+						background="white"
 					/>
 				</Sequence>
 
 				<Sequence from={80} durationInFrames={100}>
 					{hashTag && (
 						<SubText
-							titleColor={
-								name === 'Classic' ||
-								name === 'Classic (No Lower Third)' ||
-								name === 'No Lower Third' ||
-								name === 'Classic Color Border' ||
-								name === 'Bar' ||
-								name === 'Bars' ||
-								name === 'Bars - No Year' ||
-								name === 'Black Bar' ||
-								name === 'Text Only'
-									? PrimaryColor
-									: 'black'
-							}
+							titleColor={PrimaryColor}
 							titleText={`#${hashTag}`}
-							bottom={130}
-							size="35px"
+							bottom={180}
+							size="45px"
 							fontWeight={400}
 							time={2}
-							marginLeft={''}
-							fontStyle={''}
+							marginLeft=""
+							fontStyle=""
 						/>
 					)}
 				</Sequence>
 
 				<Sequence from={130} durationInFrames={50}>
-					<UnderlineEffect
-						lineAlign={-11.5}
-						color={
-							name === 'Classic' ||
-							name === 'Classic (No Lower Third)' ||
-							name === 'No Lower Third' ||
-							name === 'Classic Color Border' ||
-							name === 'Bar' ||
-							name === 'Bars' ||
-							name === 'Bars - No Year' ||
-							name === 'Black Bar' ||
-							name === 'Text Only'
-								? PrimaryColor
-								: SecondaryColor
-						}
-					/>
+					<UnderlineEffect lineAlign={-11.7} color={PrimaryColor} />
 				</Sequence>
 
 				<Sequence from={150} durationInFrames={30}>
-					<SlideOpenEffect
-						color={
-							name === 'Classic' ||
-							name === 'Classic (No Lower Third)' ||
-							name === 'No Lower Third' ||
-							name === 'Classic Color Border' ||
-							name === 'Bar' ||
-							name === 'Bars' ||
-							name === 'Bars - No Year' ||
-							name === 'Black Bar' ||
-							name === 'Text Only'
-								? SecondaryColor
-								: 'black'
-						}
-					/>
-				</Sequence> */}
+					<SlideOpenEffect color={SecondaryColor} />
+				</Sequence>
 			</>
 		</AbsoluteFill>
 	);

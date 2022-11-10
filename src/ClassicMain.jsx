@@ -1,3 +1,4 @@
+/* eslint-disable no-negated-condition */
 import {
 	AbsoluteFill,
 	Sequence,
@@ -5,6 +6,7 @@ import {
 	continueRender,
 	delayRender,
 	Img,
+	Audio,
 } from 'remotion';
 
 import {useCallback, useState, useEffect} from 'react';
@@ -12,21 +14,23 @@ import {useCallback, useState, useEffect} from 'react';
 import {ClassicIndividual} from './components/Individual/ClassicIndividual';
 import {IntroMain} from './components/Intro/IntroMain';
 import {getVideoMetadata} from '@remotion/media-utils';
+import {OutroMain} from './components/Outro/OutroMain';
 
 export const ClassicMain = () => {
 	const [handle] = useState(() => delayRender());
 
 	const [remotionDetails, setRemotionDetails] = useState(null);
 	const [classicData, setClassicData] = useState([]);
+	const [audioUrl, setAudioUrl] = useState();
 
 	const fetchData = useCallback(async () => {
 		await fetch(
-			`https://clipping-platform-api-staging.azurewebsites.net/producer/remotion-preview/3c522de1-ed6c-4b01-83d0-27514dc8f33d`
+			`https://clipping-platform-api-staging.azurewebsites.net/producer/remotion-preview/6874fe24-35fc-48d5-92e1-28c0f0c6875a`
 		)
 			.then((response) => response.json())
 			.then((actualData) => {
 				setRemotionDetails(actualData);
-				console.log(actualData);
+				setAudioUrl(actualData.remotionPreviewData.audioUrl);
 			})
 			.catch((err) => {
 				console.log(err.message);
@@ -35,8 +39,7 @@ export const ClassicMain = () => {
 
 	useEffect(() => {
 		fetchData();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [fetchData]);
 
 	const getVideoDuration = async (firstAsset) => {
 		try {
@@ -57,7 +60,7 @@ export const ClassicMain = () => {
 					return {
 						component: (
 							<IntroMain
-								// HashTag={}
+								hashTag={`${remotionDetails.remotionPreviewData.hashtag}`}
 								logo={`${remotionDetails.remotionPreviewData.logoUrl}`}
 								PrimaryColor={`${remotionDetails.remotionPreviewData.primaryColor}`}
 								SecondaryColor={`${remotionDetails.remotionPreviewData.secondaryColor}`}
@@ -68,38 +71,21 @@ export const ClassicMain = () => {
 					};
 				}
 
-				// If (mediaAsset.type === 'outro') {
-				// 	return {
-				// 		component: (
-				// 			<OutroMain
-				// 				hashTag={
-				// 					(clipConfiguration && clipConfiguration?.hashtag) ||
-				// 					(institution && institution?.hashtag) ||
-				// 					''
-				// 				}
-				// 				logo={
-				// 					(clipConfiguration && clipConfiguration?.logoUrl) ||
-				// 					(institution && institution?.logoUrl) ||
-				// 					''
-				// 				}
-				// 				color={`${
-				// 					clipConfiguration?.primaryColour === null
-				// 						? institution?.primaryColour
-				// 						: clipConfiguration?.primaryColour
-				// 				}`}
-				// 				SecondaryColor={`${
-				// 					clipConfiguration?.secondaryColour === null
-				// 						? institution?.secondaryColour
-				// 						: clipConfiguration?.secondaryColour
-				// 				}`}
-				// 				name={templateDetails?.data.name}
-				// 				institutionsName={institution?.name}
-				// 			/>
-				// 		),
-				// 		duration: 350,
-				// 		type: mediaAsset.type,
-				// 	};
-				// }
+				if (mediaAsset.type === 'outro') {
+					return {
+						component: (
+							<OutroMain
+								hashTag={`${remotionDetails.remotionPreviewData.hashtag}`}
+								logo={`${remotionDetails.remotionPreviewData.logoUrl}`}
+								color={`${remotionDetails.remotionPreviewData.primaryColor}`}
+								SecondaryColor={`${remotionDetails.remotionPreviewData.secondaryColor}`}
+								institutionsName={remotionDetails?.institutionName}
+							/>
+						),
+						duration: 350,
+						type: mediaAsset.type,
+					};
+				}
 
 				if (mediaAsset.type === 'media') {
 					if (mediaAsset.media.type === 'video') {
@@ -127,6 +113,7 @@ export const ClassicMain = () => {
 							SecondaryColor={
 								remotionDetails.remotionPreviewData.secondaryColor
 							}
+							graphics={remotionDetails.remotionPreviewData.videoHasGraphics}
 							volume={1}
 							speed={1}
 						/>
@@ -138,38 +125,36 @@ export const ClassicMain = () => {
 
 		const data = await Promise.all(mediaAssetsDetails);
 
-		// If (remotionDetails.remotionPreviewData.slowMotionVideoEnable) {
-		// 	const indexOnStudent = data.findIndex(
-		// 		(value) => value.type === 'student'
-		// 	);
-		// 	const slowMotionStudentVideo = {
-		// 		component: (
-		// 			<ClassicIndividual
-		// 				logo={remotionDetails.remotionPreviewData.logoUrl}
-		// 				color={remotionDetails.remotionPreviewData.primaryColor}
-		// 				SecondaryColor={remotionDetails.remotionPreviewData.secondaryColor}
-		// 				volume={0}
-		// 				speed={0.7}
-		// 			/>
-		// 		),
-		// 		duration: 360,
-		// 		type: 'student',
-		// 	};
+		if (remotionDetails.remotionPreviewData.slowMotionVideoEnable) {
+			const indexOnStudent = data.findIndex(
+				(value) => value.type === 'student'
+			);
+			const slowMotionStudentVideo = {
+				component: (
+					<ClassicIndividual
+						logo={remotionDetails.remotionPreviewData.logoUrl}
+						color={remotionDetails.remotionPreviewData.primaryColor}
+						SecondaryColor={remotionDetails.remotionPreviewData.secondaryColor}
+						graphics={remotionDetails.remotionPreviewData.videoHasGraphics}
+						volume={0}
+						speed={0.7}
+					/>
+				),
+				duration: 360,
+				type: 'student',
+			};
 
-		// 	data.splice(indexOnStudent + 1, 0, slowMotionStudentVideo);
-		// }
+			data.splice(indexOnStudent + 1, 0, slowMotionStudentVideo);
+		}
 
 		setClassicData(data);
 		continueRender(handle);
 	};
 
 	useEffect(() => {
-		// Async function fetchGetData() {
 		if (remotionDetails) {
 			getData();
 		}
-		// }
-		// fetchGetData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [remotionDetails]);
 
@@ -208,6 +193,7 @@ export const ClassicMain = () => {
 					</AbsoluteFill>
 				);
 			})}
+			{audioUrl && <Audio loop volume={0.4} src={`${audioUrl}`} />}
 		</AbsoluteFill>
 	);
 };
