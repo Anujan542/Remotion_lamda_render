@@ -11,13 +11,12 @@ import {
 } from 'remotion';
 
 import {useCallback, useState, useEffect} from 'react';
-
 import {IntroMain} from './components/Intro/IntroMain';
 import {getVideoMetadata} from '@remotion/media-utils';
 import {OutroMain} from './components/Outro/OutroMain';
-import {ClassicColorBorderIndividual} from './components/Individual/ClassicColorIndividual';
+import {TextOnlyIndividual} from './components/Individual/TextOnlyIndividual';
 
-export const ClassicColorBorderMain = () => {
+export const TextOnlyMain = () => {
 	const [handle] = useState(() => delayRender());
 
 	const [remotionDetails, setRemotionDetails] = useState(null);
@@ -111,12 +110,9 @@ export const ClassicColorBorderMain = () => {
 
 				return {
 					component: (
-						<ClassicColorBorderIndividual
+						<TextOnlyIndividual
 							logo={remotionDetails.remotionPreviewData.logoUrl}
 							color={remotionDetails.remotionPreviewData.primaryColor}
-							SecondaryColor={
-								remotionDetails.remotionPreviewData.secondaryColor
-							}
 							graphics={remotionDetails.remotionPreviewData.videoHasGraphics}
 							volume={1}
 							speed={1}
@@ -135,10 +131,9 @@ export const ClassicColorBorderMain = () => {
 			);
 			const slowMotionStudentVideo = {
 				component: (
-					<ClassicColorBorderIndividual
+					<TextOnlyIndividual
 						logo={remotionDetails.remotionPreviewData.logoUrl}
 						color={remotionDetails.remotionPreviewData.primaryColor}
-						SecondaryColor={remotionDetails.remotionPreviewData.secondaryColor}
 						graphics={remotionDetails.remotionPreviewData.videoHasGraphics}
 						volume={0}
 						speed={0.7}

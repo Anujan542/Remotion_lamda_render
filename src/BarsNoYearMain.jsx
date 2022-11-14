@@ -15,9 +15,9 @@ import {useCallback, useState, useEffect} from 'react';
 import {IntroMain} from './components/Intro/IntroMain';
 import {getVideoMetadata} from '@remotion/media-utils';
 import {OutroMain} from './components/Outro/OutroMain';
-import {ClassicColorBorderIndividual} from './components/Individual/ClassicColorIndividual';
+import {BarsNoYearsIndividual} from './components/Individual/BarsNoYearIndividual';
 
-export const ClassicColorBorderMain = () => {
+export const BarsNoYearMain = () => {
 	const [handle] = useState(() => delayRender());
 
 	const [remotionDetails, setRemotionDetails] = useState(null);
@@ -25,7 +25,6 @@ export const ClassicColorBorderMain = () => {
 	const [audioUrl, setAudioUrl] = useState();
 
 	const {id} = getInputProps();
-
 	const fetchData = useCallback(async () => {
 		await fetch(
 			`https://clipping-platform-api-staging.azurewebsites.net/producer/remotion-preview/${id}`
@@ -111,12 +110,9 @@ export const ClassicColorBorderMain = () => {
 
 				return {
 					component: (
-						<ClassicColorBorderIndividual
+						<BarsNoYearsIndividual
 							logo={remotionDetails.remotionPreviewData.logoUrl}
 							color={remotionDetails.remotionPreviewData.primaryColor}
-							SecondaryColor={
-								remotionDetails.remotionPreviewData.secondaryColor
-							}
 							graphics={remotionDetails.remotionPreviewData.videoHasGraphics}
 							volume={1}
 							speed={1}
@@ -135,10 +131,9 @@ export const ClassicColorBorderMain = () => {
 			);
 			const slowMotionStudentVideo = {
 				component: (
-					<ClassicColorBorderIndividual
+					<BarsNoYearsIndividual
 						logo={remotionDetails.remotionPreviewData.logoUrl}
 						color={remotionDetails.remotionPreviewData.primaryColor}
-						SecondaryColor={remotionDetails.remotionPreviewData.secondaryColor}
 						graphics={remotionDetails.remotionPreviewData.videoHasGraphics}
 						volume={0}
 						speed={0.7}

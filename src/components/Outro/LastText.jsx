@@ -1,6 +1,6 @@
 import {AbsoluteFill, useCurrentFrame} from 'remotion';
 
-import '../Intro/Text.css';
+import '../fonts/Text.css';
 
 export const LastText = ({
 	titleText,

@@ -1,6 +1,6 @@
-import {Img} from 'remotion';
+import {Audio, Img, Sequence, staticFile} from 'remotion';
 import {AbsoluteFill, OffthreadVideo} from 'remotion';
-import '../Intro/Text.css';
+import '../fonts/Text.css';
 import {GlowingStroke} from './GlowingStroke';
 
 export const ClassicColorBorderIndividual = ({
@@ -12,9 +12,9 @@ export const ClassicColorBorderIndividual = ({
 }) => {
 	return (
 		<AbsoluteFill>
-			{/* <Sequence from={20}>
-				<Audio volume={props.volume} src={voice} />
-			</Sequence> */}
+			<Sequence from={20}>
+				<Audio volume={1} src={staticFile('voice.wav')} />
+			</Sequence>
 
 			{graphics ? (
 				<>
@@ -33,7 +33,7 @@ export const ClassicColorBorderIndividual = ({
 							<Img
 								src={logo}
 								style={{
-									marginTop: '7rem',
+									marginTop: '10rem',
 									maxWidth: '12%',
 									maxHeight: '12%',
 									position: 'absolute',
@@ -60,14 +60,14 @@ export const ClassicColorBorderIndividual = ({
 								style={{
 									position: 'absolute',
 									background: 'white',
-									width: '1300px',
-									height: '400px',
+									width: '1920px',
+									height: '500px',
 								}}
 							>
 								<GlowingStroke
-									width={1290}
-									height={203}
-									radius={3}
+									width={1920}
+									height={250}
+									radius={5}
 									color1={color}
 									color2={color}
 								/>
@@ -81,9 +81,9 @@ export const ClassicColorBorderIndividual = ({
 									<div
 										style={{
 											fontFamily: 'Roboto',
-											fontSize: '52px',
+											fontSize: '100px',
 											fontWeight: 900,
-											top: '48px',
+											top: '10px',
 											textAlign: 'center',
 											position: 'absolute',
 											color: 'black',
@@ -102,9 +102,9 @@ export const ClassicColorBorderIndividual = ({
 									<div
 										style={{
 											fontFamily: 'Roboto',
-											fontSize: '29px',
+											fontSize: '40px',
 											fontWeight: 900,
-											top: '90px',
+											top: '120px',
 											textAlign: 'center',
 											position: 'absolute',
 											color: 'black',
@@ -123,9 +123,9 @@ export const ClassicColorBorderIndividual = ({
 									<div
 										style={{
 											fontFamily: 'Roboto',
-											fontSize: '29px',
+											fontSize: '35px',
 											fontWeight: 900,
-											top: '125px',
+											top: '180px',
 											textAlign: 'center',
 											position: 'absolute',
 											color: 'black',
@@ -370,7 +370,7 @@ export const ClassicColorBorderIndividual = ({
 										fontFamily: 'Roboto',
 										fontSize: '44px',
 										fontWeight: 900,
-										bottom: '64px',
+										bottom: '58px',
 										textAlign: 'center',
 										position: 'absolute',
 										color: 'black',
@@ -391,7 +391,7 @@ export const ClassicColorBorderIndividual = ({
 										fontFamily: 'Roboto',
 										fontSize: '22px',
 										fontWeight: 900,
-										bottom: '31px',
+										bottom: '34px',
 										textAlign: 'center',
 										position: 'absolute',
 										color: 'black',

@@ -36,10 +36,10 @@ export const GlowingStroke = ({width, height, radius, color1, color2}) => {
 					ry={radius}
 					stroke={`url(#${gId})`}
 					fill="none"
-					strokeDasharray={`3500 ${circumference}`}
+					strokeDasharray={`7500 ${circumference}`}
 					strokeDashoffset={strokeDashoffset}
 					strokeLinecap="round"
-					strokeWidth={4}
+					strokeWidth={5}
 				/>
 			</svg>
 		</div>

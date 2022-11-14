@@ -7,6 +7,7 @@ import {
 	delayRender,
 	Img,
 	Audio,
+	getInputProps,
 } from 'remotion';
 
 import {useCallback, useState, useEffect} from 'react';
@@ -23,9 +24,10 @@ export const ClassicMain = () => {
 	const [classicData, setClassicData] = useState([]);
 	const [audioUrl, setAudioUrl] = useState();
 
+	const {id} = getInputProps();
 	const fetchData = useCallback(async () => {
 		await fetch(
-			`https://clipping-platform-api-staging.azurewebsites.net/producer/remotion-preview/6874fe24-35fc-48d5-92e1-28c0f0c6875a`
+			`https://clipping-platform-api-staging.azurewebsites.net/producer/remotion-preview/${id}`
 		)
 			.then((response) => response.json())
 			.then((actualData) => {
@@ -35,6 +37,7 @@ export const ClassicMain = () => {
 			.catch((err) => {
 				console.log(err.message);
 			});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [handle]);
 
 	useEffect(() => {

@@ -15,9 +15,9 @@ import {useCallback, useState, useEffect} from 'react';
 import {IntroMain} from './components/Intro/IntroMain';
 import {getVideoMetadata} from '@remotion/media-utils';
 import {OutroMain} from './components/Outro/OutroMain';
-import {ClassicColorBorderIndividual} from './components/Individual/ClassicColorIndividual';
+import {ClassicNoLowerThirdIndividual} from './components/Individual/ClassicNoLowerThirdIndividual';
 
-export const ClassicColorBorderMain = () => {
+export const ClassicNoLowerThirdMain = () => {
 	const [handle] = useState(() => delayRender());
 
 	const [remotionDetails, setRemotionDetails] = useState(null);
@@ -25,7 +25,6 @@ export const ClassicColorBorderMain = () => {
 	const [audioUrl, setAudioUrl] = useState();
 
 	const {id} = getInputProps();
-
 	const fetchData = useCallback(async () => {
 		await fetch(
 			`https://clipping-platform-api-staging.azurewebsites.net/producer/remotion-preview/${id}`
@@ -110,18 +109,7 @@ export const ClassicColorBorderMain = () => {
 				}
 
 				return {
-					component: (
-						<ClassicColorBorderIndividual
-							logo={remotionDetails.remotionPreviewData.logoUrl}
-							color={remotionDetails.remotionPreviewData.primaryColor}
-							SecondaryColor={
-								remotionDetails.remotionPreviewData.secondaryColor
-							}
-							graphics={remotionDetails.remotionPreviewData.videoHasGraphics}
-							volume={1}
-							speed={1}
-						/>
-					),
+					component: <ClassicNoLowerThirdIndividual volume={1} speed={1} />,
 					duration: 256,
 					type: 'student',
 				};
@@ -134,16 +122,7 @@ export const ClassicColorBorderMain = () => {
 				(value) => value.type === 'student'
 			);
 			const slowMotionStudentVideo = {
-				component: (
-					<ClassicColorBorderIndividual
-						logo={remotionDetails.remotionPreviewData.logoUrl}
-						color={remotionDetails.remotionPreviewData.primaryColor}
-						SecondaryColor={remotionDetails.remotionPreviewData.secondaryColor}
-						graphics={remotionDetails.remotionPreviewData.videoHasGraphics}
-						volume={0}
-						speed={0.7}
-					/>
-				),
+				component: <ClassicNoLowerThirdIndividual volume={0} speed={0.7} />,
 				duration: 360,
 				type: 'student',
 			};
