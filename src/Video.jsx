@@ -8,7 +8,9 @@ import {useEffect, useState, useCallback} from 'react';
 // Import {BarsMain} from './BarsMain';
 // import {BarsNoYearMain} from './BarsNoYearMain';
 // import {BlackBarMain} from './BlackBarMain';
-import {TextOnlyMain} from './TextOnlyMain';
+// import {TextOnlyMain} from './TextOnlyMain';
+// import {BalloonMain} from './BalloonTemplate/BalloonMain';
+import { ChalkboardMain } from './ChalkboardTemplate/ChalkboardMain';
 // Import {ClassicNoLowerThirdMain} from './ClassicNoLowerThird';
 // Import {ClassicMain} from './ClassicMain';
 // import {ClassicColorBorderMain} from './ClassicColorBorderMain';
@@ -18,6 +20,7 @@ export const RemotionVideo = () => {
 	const [totalTime, setTotalTime] = useState(1);
 
 	const {id} = getInputProps();
+
 	const fetchData = useCallback(async () => {
 		await fetch(
 			`https://clipping-platform-api-staging.azurewebsites.net/producer/remotion-preview/${id}`
@@ -41,7 +44,7 @@ export const RemotionVideo = () => {
 		<>
 			<Composition
 				id="HelloWorld"
-				component={TextOnlyMain}
+				component={ChalkboardMain}
 				durationInFrames={totalTime}
 				fps={30}
 				width={1920}

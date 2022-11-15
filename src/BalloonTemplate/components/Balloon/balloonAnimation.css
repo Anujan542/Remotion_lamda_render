@@ -1,0 +1,13 @@
+/* .ballonMovement {
+  animation: balloons 4s infinite alternate;
+}
+
+@keyframes balloons {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+} */
