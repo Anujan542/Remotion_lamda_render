@@ -5,10 +5,16 @@ import {Img} from 'remotion';
 
 import {AbsoluteFill, OffthreadVideo, staticFile} from 'remotion';
 
-import '../fonts/Text.css';
+import '../../../components/fonts/Text.css';
 import {GlowingStroke} from './GlowingStroke';
 
-export const ClassicIndividual = ({volume, speed, graphics, logo, color}) => {
+export const ClassicColorIndividual = ({
+	volume,
+	speed,
+	graphics,
+	logo,
+	color,
+}) => {
 	return (
 		<AbsoluteFill>
 			<Sequence from={20}>
@@ -58,7 +64,7 @@ export const ClassicIndividual = ({volume, speed, graphics, logo, color}) => {
 							<div
 								style={{
 									position: 'absolute',
-									background: 'white',
+									background: color,
 									width: '1920px',
 									height: '500px',
 								}}
@@ -67,8 +73,8 @@ export const ClassicIndividual = ({volume, speed, graphics, logo, color}) => {
 									width={1920}
 									height={250}
 									radius={5}
-									color1={color}
-									color2={color}
+									color1="black"
+									color2="black"
 								/>
 
 								<AbsoluteFill
@@ -342,7 +348,7 @@ export const ClassicIndividual = ({volume, speed, graphics, logo, color}) => {
 							style={{
 								position: 'absolute',
 								marginBottom: '10rem',
-								background: 'white',
+								background: color,
 								width: '1100px',
 								height: '120px',
 							}}
@@ -351,8 +357,8 @@ export const ClassicIndividual = ({volume, speed, graphics, logo, color}) => {
 								width={1103}
 								height={125}
 								radius={3}
-								color1={color}
-								color2={color}
+								color1="black"
+								color2="black"
 							/>
 
 							<AbsoluteFill

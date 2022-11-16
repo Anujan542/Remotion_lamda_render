@@ -1,3 +1,4 @@
+/* eslint-disable @remotion/volume-callback */
 import {
 	AbsoluteFill,
 	Audio,
@@ -9,11 +10,11 @@ import {
 import Background from '../../assets/chalk.png';
 import '../../../components/fonts/Text.css';
 
-export const ChalkIndividualMain = ({speed, graphics}) => {
+export const ChalkIndividualMain = ({speed, graphics, volume}) => {
 	return (
 		<AbsoluteFill>
 			<Sequence from={20}>
-				<Audio volume={1} src={staticFile('voice.wav')} />
+				<Audio volume={volume} src={staticFile('voice.wav')} />
 			</Sequence>
 			{graphics ? (
 				<AbsoluteFill

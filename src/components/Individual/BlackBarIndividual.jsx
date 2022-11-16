@@ -1,3 +1,4 @@
+/* eslint-disable @remotion/volume-callback */
 import {Audio, Img, Sequence, staticFile} from 'remotion';
 import {AbsoluteFill, OffthreadVideo} from 'remotion';
 import '../fonts/Text.css';
@@ -6,7 +7,7 @@ export const BlackBarIndividual = ({volume, speed, graphics, logo}) => {
 	return (
 		<AbsoluteFill>
 			<Sequence from={20}>
-				<Audio volume={1} src={staticFile('voice.wav')} />
+				<Audio volume={volume} src={staticFile('voice.wav')} />
 			</Sequence>
 
 			{graphics ? (

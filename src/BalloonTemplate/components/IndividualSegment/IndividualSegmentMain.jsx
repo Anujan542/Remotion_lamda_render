@@ -1,3 +1,4 @@
+/* eslint-disable @remotion/volume-callback */
 import {
 	AbsoluteFill,
 	OffthreadVideo,
@@ -16,13 +17,14 @@ export const BalloonIndividualSegmentMain = ({
 	speed,
 	color,
 	SecondaryColor,
+	volume,
 	graphics,
 	slowMotionVideoEnable,
 }) => {
 	return (
 		<AbsoluteFill>
 			<Sequence from={20}>
-				<Audio volume={1} src={staticFile('voice.wav')} />
+				<Audio volume={volume} src={staticFile('voice.wav')} />
 			</Sequence>
 			{graphics ? (
 				<>

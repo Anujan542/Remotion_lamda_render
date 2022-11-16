@@ -5,12 +5,14 @@ import {
 	getInputProps,
 } from 'remotion';
 import {useEffect, useState, useCallback} from 'react';
+
 // Import {BarsMain} from './BarsMain';
 // import {BarsNoYearMain} from './BarsNoYearMain';
 // import {BlackBarMain} from './BlackBarMain';
 // import {TextOnlyMain} from './TextOnlyMain';
 // import {BalloonMain} from './BalloonTemplate/BalloonMain';
-import { ChalkboardMain } from './ChalkboardTemplate/ChalkboardMain';
+// import { ChalkboardMain } from './ChalkboardTemplate/ChalkboardMain';
+import {ClassicColorMain} from './ClassicColorTemplate/ClassicColorMain';
 // Import {ClassicNoLowerThirdMain} from './ClassicNoLowerThird';
 // Import {ClassicMain} from './ClassicMain';
 // import {ClassicColorBorderMain} from './ClassicColorBorderMain';
@@ -44,7 +46,7 @@ export const RemotionVideo = () => {
 		<>
 			<Composition
 				id="HelloWorld"
-				component={ChalkboardMain}
+				component={ClassicColorMain}
 				durationInFrames={totalTime}
 				fps={30}
 				width={1920}
