@@ -58,14 +58,14 @@ export const IntroMain = ({logo, PrimaryColor, SecondaryColor, hashTag}) => {
 				</Sequence>
 
 				<Sequence from={75} durationInFrames={105}>
-					<Underline alignTop={`${38}`} color={PrimaryColor} />
+					<Underline alignTop={`${43}`} color={PrimaryColor} />
 				</Sequence>
 
 				<Sequence from={80} durationInFrames={100}>
 					<Text
 						titleColor={PrimaryColor}
 						titleText="CONGRATULATIONS!"
-						bottom={270}
+						bottom={230}
 						size="90px"
 						fontWeight={900}
 						time={1}
@@ -91,7 +91,7 @@ export const IntroMain = ({logo, PrimaryColor, SecondaryColor, hashTag}) => {
 				</Sequence>
 
 				<Sequence from={130} durationInFrames={50}>
-					<UnderlineEffect lineAlign={-11.7} color={PrimaryColor} />
+					<UnderlineEffect lineAlign={-22} color={PrimaryColor} />
 				</Sequence>
 
 				<Sequence from={150} durationInFrames={30}>

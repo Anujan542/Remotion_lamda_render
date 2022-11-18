@@ -12,10 +12,10 @@ import {useEffect, useState, useCallback} from 'react';
 // import {TextOnlyMain} from './TextOnlyMain';
 // import {BalloonMain} from './BalloonTemplate/BalloonMain';
 // import { ChalkboardMain } from './ChalkboardTemplate/ChalkboardMain';
-import {ClassicColorMain} from './ClassicColorTemplate/ClassicColorMain';
+// import {ClassicColorMain} from './ClassicColorTemplate/ClassicColorMain';
 // Import {ClassicNoLowerThirdMain} from './ClassicNoLowerThird';
-// Import {ClassicMain} from './ClassicMain';
-// import {ClassicColorBorderMain} from './ClassicColorBorderMain';
+import {ClassicMain} from './ClassicMain';
+// Import {ClassicColorBorderMain} from './ClassicColorBorderMain';
 
 export const RemotionVideo = () => {
 	const [handle] = useState(() => delayRender());
@@ -46,7 +46,7 @@ export const RemotionVideo = () => {
 		<>
 			<Composition
 				id="HelloWorld"
-				component={ClassicColorMain}
+				component={ClassicMain}
 				durationInFrames={totalTime}
 				fps={30}
 				width={1920}
