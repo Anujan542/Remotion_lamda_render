@@ -25,7 +25,7 @@ export const RemotionVideo = () => {
 
 	const fetchData = useCallback(async () => {
 		await fetch(
-			`https://clipping-platform-api-staging.azurewebsites.net/producer/remotion-preview/${id}`
+			`https://clipping-platform-api-development-2.azurewebsites.net/producer/remotion-preview/${id}`
 		)
 			.then((response) => response.json())
 			.then((actualData) => {

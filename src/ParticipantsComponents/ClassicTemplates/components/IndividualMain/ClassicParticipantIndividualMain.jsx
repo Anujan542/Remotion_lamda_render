@@ -3,20 +3,23 @@
 import {AbsoluteFill, Img, OffthreadVideo, Audio} from 'remotion';
 
 import '../../../../components/fonts/Text.css';
-import {GlowingStroke} from '../../../../components/Individual/GlowingStroke';
+import {GlowingStrokeLiveParticipant} from '../Effects/GlowingStrokeLiveParticipant';
 
 export const ClassicParticipantIndividual = ({
-	volume,
+	audioVolume,
 	speed,
 	graphics,
 	logo,
 	color,
 	videoUrl,
 	audioUrl,
+	fullName,
+	SubTitle,
+	SecondSubTitle,
 }) => {
 	return (
 		<AbsoluteFill>
-			<Audio volume={volume} src={audioUrl} />
+			<Audio volume={audioVolume} src={audioUrl} />
 
 			{graphics ? (
 				<>
@@ -45,11 +48,7 @@ export const ClassicParticipantIndividual = ({
 							/>
 						</div>
 
-						<OffthreadVideo
-							volume={volume}
-							playbackRate={speed}
-							src={videoUrl}
-						/>
+						<OffthreadVideo muted playbackRate={speed} src={videoUrl} />
 
 						<div
 							style={{
@@ -66,7 +65,7 @@ export const ClassicParticipantIndividual = ({
 									height: '500px',
 								}}
 							>
-								<GlowingStroke
+								<GlowingStrokeLiveParticipant
 									width={1920}
 									height={250}
 									radius={5}
@@ -92,7 +91,7 @@ export const ClassicParticipantIndividual = ({
 											letterSpacing: '1px',
 										}}
 									>
-										Renee Lareese Johnson
+										{fullName}
 									</div>
 								</AbsoluteFill>
 								<AbsoluteFill
@@ -113,7 +112,7 @@ export const ClassicParticipantIndividual = ({
 											letterSpacing: '1px',
 										}}
 									>
-										Bachelor of Science in Political Science
+										{SubTitle}
 									</div>
 								</AbsoluteFill>
 								<AbsoluteFill
@@ -134,7 +133,7 @@ export const ClassicParticipantIndividual = ({
 											letterSpacing: '1px',
 										}}
 									>
-										Cum Laude
+										{SecondSubTitle}
 									</div>
 								</AbsoluteFill>
 							</div>
@@ -328,7 +327,7 @@ export const ClassicParticipantIndividual = ({
 						/>
 					</div>
 
-					<OffthreadVideo volume={volume} playbackRate={speed} src={videoUrl} />
+					<OffthreadVideo muted playbackRate={speed} src={videoUrl} />
 
 					<div
 						style={{
@@ -340,83 +339,132 @@ export const ClassicParticipantIndividual = ({
 						<div
 							style={{
 								position: 'absolute',
-								marginBottom: '10rem',
+								marginBottom: '12rem',
 								background: 'white',
-								width: '1100px',
-								height: '120px',
+								width: '1650px',
+								height: '150px',
 							}}
 						>
-							<GlowingStroke
-								width={1103}
-								height={125}
+							<GlowingStrokeLiveParticipant
+								width={1650}
+								height={155}
 								radius={3}
 								color1={color}
 								color2={color}
 							/>
 
-							<AbsoluteFill
-								style={{
-									alignItems: 'center',
-									justifyContent: 'start',
-								}}
-							>
-								<div
-									style={{
-										fontFamily: 'Roboto',
-										fontSize: '50px',
-										fontWeight: 900,
-										bottom: '58px',
-										textAlign: 'center',
-										position: 'absolute',
-										color: 'black',
-										letterSpacing: '1px',
-									}}
-								>
-									Renee Lareese Johnson
-								</div>
-							</AbsoluteFill>
-							<AbsoluteFill
-								style={{
-									alignItems: 'center',
-									justifyContent: 'start',
-								}}
-							>
-								<div
-									style={{
-										fontFamily: 'Roboto',
-										fontSize: '22px',
-										fontWeight: 900,
-										bottom: '34px',
-										textAlign: 'center',
-										position: 'absolute',
-										color: 'black',
-										letterSpacing: '1px',
-									}}
-								>
-									Bachelor of Science in Political Science
-								</div>
-							</AbsoluteFill>
-							<AbsoluteFill
-								style={{
-									alignItems: 'center',
-									justifyContent: 'start',
-								}}
-							>
-								<div
-									style={{
-										fontFamily: 'Roboto',
-										fontSize: '20px',
-										fontWeight: 900,
-										bottom: '11px',
-										textAlign: 'center',
-										position: 'absolute',
-										color: 'black',
-										letterSpacing: '1px',
-									}}
-								>
-									Cum Laude
-								</div>
-							</AbsoluteFill>
+							{SecondSubTitle === null ? (
+								<>
+									<AbsoluteFill
+										style={{
+											alignItems: 'center',
+											justifyContent: 'start',
+										}}
+									>
+										<div
+											style={{
+												fontFamily: 'Roboto',
+												fontSize: '55px',
+												fontWeight: 900,
+												bottom: '68px',
+												textAlign: 'center',
+												position: 'absolute',
+												color: 'black',
+												LetterSpacing: '1px',
+											}}
+										>
+											{fullName}
+										</div>
+									</AbsoluteFill>
+									<AbsoluteFill
+										style={{
+											alignItems: 'center',
+											justifyContent: 'start',
+										}}
+									>
+										<div
+											style={{
+												fontFamily: 'Roboto',
+												fontSize: '40px',
+												fontWeight: 800,
+												bottom: '25px',
+												textAlign: 'center',
+												position: 'absolute',
+												color: 'black',
+												letterSpacing: '1px',
+											}}
+										>
+											{SubTitle}
+										</div>
+									</AbsoluteFill>
+								</>
+							) : (
+								<>
+									<AbsoluteFill
+										style={{
+											alignItems: 'center',
+											justifyContent: 'start',
+										}}
+									>
+										<div
+											style={{
+												fontFamily: 'Roboto',
+												fontSize: '55px',
+												fontWeight: 900,
+												bottom: '63px',
+												textAlign: 'center',
+												position: 'absolute',
+												color: 'black',
+												LetterSpacing: '1px',
+											}}
+										>
+											{fullName}
+										</div>
+									</AbsoluteFill>
+									<AbsoluteFill
+										style={{
+											alignItems: 'center',
+											justifyContent: 'start',
+										}}
+									>
+										<div
+											style={{
+												fontFamily: 'Roboto',
+												fontSize: '22px',
+												fontWeight: 900,
+												bottom: '34px',
+												textAlign: 'center',
+												position: 'absolute',
+												color: 'black',
+												letterSpacing: '1px',
+											}}
+										>
+											{SubTitle}
+										</div>
+									</AbsoluteFill>
+									<AbsoluteFill
+										style={{
+											alignItems: 'center',
+											justifyContent: 'start',
+										}}
+									>
+										<div
+											style={{
+												fontFamily: 'Roboto',
+												fontSize: '20px',
+												fontWeight: 900,
+												bottom: '11px',
+												textAlign: 'center',
+												position: 'absolute',
+												color: 'black',
+												letterSpacing: '1px',
+											}}
+										>
+											{SecondSubTitle}
+										</div>
+									</AbsoluteFill>
+								</>
+							)}
 						</div>
 					</div>
 				</AbsoluteFill>

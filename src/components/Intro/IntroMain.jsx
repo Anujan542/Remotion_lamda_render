@@ -18,7 +18,7 @@ import {Underline} from './Underline';
 export const IntroMain = ({logo, PrimaryColor, SecondaryColor, hashTag}) => {
 	const frame = useCurrentFrame();
 
-	const opacity = interpolate(frame, [0, 100], [0, 4]);
+	const opacity = interpolate(frame, [-50, 100], [0, 4]);
 
 	return (
 		<AbsoluteFill style={{backgroundColor: 'white'}}>
@@ -52,20 +52,20 @@ export const IntroMain = ({logo, PrimaryColor, SecondaryColor, hashTag}) => {
 					<DownLogo
 						logo={logo}
 						color={PrimaryColor}
-						width={`${50}`}
-						height={`${50}`}
+						width={`${40}`}
+						height={`${40}`}
 					/>
 				</Sequence>
 
 				<Sequence from={75} durationInFrames={105}>
-					<Underline alignTop={`${43}`} color={PrimaryColor} />
+					<Underline alignTop={`${40}`} color={PrimaryColor} />
 				</Sequence>
 
 				<Sequence from={80} durationInFrames={100}>
 					<Text
 						titleColor={PrimaryColor}
 						titleText="CONGRATULATIONS!"
-						bottom={230}
+						bottom={250}
 						size="90px"
 						fontWeight={900}
 						time={1}
@@ -80,8 +80,8 @@ export const IntroMain = ({logo, PrimaryColor, SecondaryColor, hashTag}) => {
 						<SubText
 							titleColor={PrimaryColor}
 							titleText={`#${hashTag}`}
-							bottom={180}
-							size="45px"
+							bottom={170}
+							size="60px"
 							fontWeight={400}
 							time={2}
 							marginLeft=""
@@ -91,7 +91,7 @@ export const IntroMain = ({logo, PrimaryColor, SecondaryColor, hashTag}) => {
 				</Sequence>
 
 				<Sequence from={130} durationInFrames={50}>
-					<UnderlineEffect lineAlign={-22} color={PrimaryColor} />
+					<UnderlineEffect lineAlign={-15.8} color={PrimaryColor} />
 				</Sequence>
 
 				<Sequence from={150} durationInFrames={30}>

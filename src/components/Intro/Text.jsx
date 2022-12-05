@@ -35,7 +35,7 @@ export const Text = ({
 						position: 'absolute',
 						color: titleColor,
 						background,
-						padding: '0px 15px',
+						padding: '0px 50px',
 					}}
 				>
 					{textToShow}

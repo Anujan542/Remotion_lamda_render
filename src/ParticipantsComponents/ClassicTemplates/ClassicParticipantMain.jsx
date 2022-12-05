@@ -1,5 +1,4 @@
 /* eslint-disable no-negated-condition */
-
 import {
 	AbsoluteFill,
 	Sequence,
@@ -7,7 +6,7 @@ import {
 	continueRender,
 	delayRender,
 	Img,
-	// Audio,
+	Audio,
 	getInputProps,
 } from 'remotion';
 
@@ -23,14 +22,14 @@ export const ClassicParticipantMain = () => {
 
 	const [remotionDetails, setRemotionDetails] = useState(null);
 	const [classicData, setClassicData] = useState([]);
-	// Const [audioUrl, setAudioUrl] = useState('');
-	// Const [studentTime, setStudentTime] = useState(1);
+	const [audioUrl, setAudioUrl] = useState('');
 
 	const {id} = getInputProps();
 
 	const fetchData = useCallback(async () => {
 		await fetch(
-			`https://clipping-platform-api-development-2.azurewebsites.net/remotion/render/${id}`,
+			// eslint-disable-next-line no-undef
+			`${process.env.CLIPPING_PLATFORM_API_URL}/remotion/render/${id}`,
 			{
 				method: 'GET',
 				headers: new Headers({
@@ -44,7 +43,7 @@ export const ClassicParticipantMain = () => {
 			.then((response) => response.json())
 			.then((actualData) => {
 				setRemotionDetails(actualData);
-				// SetAudioUrl(actualData.remotionPreviewData.audioUrl);
+				setAudioUrl(actualData.remotionPreviewData.audioUrl);
 			})
 			.catch((err) => {
 				console.log(err.message);
@@ -67,21 +66,21 @@ export const ClassicParticipantMain = () => {
 		}
 	};
 
-	// Const getStudentVideoDuration = async (studentUrl) => {
-	// 	try {
-	// 		const {durationInSeconds} = await getVideoMetadata(`${studentUrl}`);
+	const getStudentVideoDuration = async (studentUrl) => {
+		try {
+			const {durationInSeconds} = await getVideoMetadata(`${studentUrl}`);
 
-	// 		return Math.round(durationInSeconds * 30);
-	// 	} catch (err) {
-	// 		console.log(`Error fetching metadata: ${err}`);
-	// 		return 0;
-	// 	}
-	// };
+			return Math.round(durationInSeconds * 30);
+		} catch (err) {
+			console.log(`Error fetching metadata: ${err}`);
+			return 0;
+		}
+	};
 
 	const getData = async () => {
-		// Const studentVideoDuration = await getStudentVideoDuration(
-		// 	remotionDetails.participantLiveVideoUrl
-		// );
+		const studentVideoDuration = await getStudentVideoDuration(
+			remotionDetails.participantLiveVideoUrl
+		);
 		const mediaAssetsDetails =
 			remotionDetails.remotionPreviewData &&
 			remotionDetails.remotionPreviewData.assets.map(async (mediaAsset) => {
@@ -145,11 +144,14 @@ export const ClassicParticipantMain = () => {
 							graphics={remotionDetails.remotionPreviewData.videoHasGraphics}
 							videoUrl={remotionDetails.participantLiveVideoUrl}
 							audioUrl={remotionDetails.participantLiveAudioUrl}
-							volume={1}
+							fullName={remotionDetails.parrticipantName}
+							SubTitle={remotionDetails.parrticipantSubTitle}
+							SecondSubTitle={remotionDetails.parrticipantSecondSubTitle}
+							audioVolume={1}
 							speed={1}
 						/>
 					),
-					duration: 180,
+					duration: studentVideoDuration,
 					type: 'student',
 				};
 			});
@@ -169,11 +171,14 @@ export const ClassicParticipantMain = () => {
 						graphics={remotionDetails.remotionPreviewData.videoHasGraphics}
 						videoUrl={remotionDetails.participantLiveVideoUrl}
 						audioUrl={remotionDetails.participantLiveAudioUrl}
-						volume={0}
+						fullName={remotionDetails.parrticipantName}
+						SubTitle={remotionDetails.parrticipantSubTitle}
+						SecondSubTitle={remotionDetails.parrticipantSecondSubTitle}
+						audioVolume={0}
 						speed={0.7}
 					/>
 				),
-				duration: 250,
+				duration: studentVideoDuration + 70,
 				type: 'student',
 			};
 
@@ -186,8 +191,8 @@ export const ClassicParticipantMain = () => {
 
 	useEffect(() => {
 		if (remotionDetails) {
-			// GetStudentVideoDuration();
 			getData();
+			getStudentVideoDuration();
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [remotionDetails]);
@@ -227,7 +232,7 @@ export const ClassicParticipantMain = () => {
 					</AbsoluteFill>
 				);
 			})}
-			{/* {audioUrl && <Audio loop volume={0.4} src={`${audioUrl}`} />} */}
+			{audioUrl && <Audio loop volume={0.1} src={`${audioUrl}`} />}
 		</AbsoluteFill>
 	);
 };
